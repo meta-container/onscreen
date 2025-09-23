@@ -6,7 +6,83 @@
   <title>onscreen.com — Free Creative Tools</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="shortcut icon" href="D:\Madam Angela\new2\New folder\Assets\glowing-circle-frame-free-png.png" type="image/x-icon">
+  <div class="alien-dropdown">
+  <button id="alienToggle">🧬 Explore </button>
+  <ul id="alienMenu" class="hidden">
+    <li data-target="📝 Word & Excel">📝 Word & Excel</li>
+    <li data-target="📄 PDF Tools">📄 PDF Tools</li>
+    <li data-target="🔤 Fonts & Unicode">🔤 Fonts & Unicode</li>
+    <li data-target="🖼️ Free Images">🖼️ Free Images</li>
+    <li data-target="🧠 Image to Text">🧠 Image to Text</li>
+    <li data-target="🔗 QR Code Generators">🔗 QR Code Generators</li>
+    <li data-target="🖨️ Printing & Editing">🖨️ Printing & Editing</li>
+    <li data-target="🧰 Multi-Tool Powerhouses">🧰 Multi-Tool Powerhouses</li>
+    <li data-target="🎨 AI Design & Creativity">🎨 AI Design & Creativity</li>
+    <li data-target="📊 Data & Visualization">📊 Data & Visualization</li>
+    <li data-target="🔐 Privacy & Security">🔐 Privacy & Security</li>
+    <li data-target="🌠 Mythic & Cosmic Additions">🌠 Mythic & Cosmic Additions</li>
+  </ul>
+</div>
   <style>
+    .alien-dropdown {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#alienToggle {
+  background: linear-gradient(135deg, #00ffe7, #6f00ff);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 0 15px #00ffe7;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+#alienToggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #6f00ff;
+}
+
+#alienMenu {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px #6f00ff;
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  width: 260px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+#alienMenu li {
+  padding: 0.8rem 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#alienMenu li:hover {
+  background: rgba(0, 255, 231, 0.2);
+  text-shadow: 0 0 5px #00ffe7;
+}
+
+#alienMenu.show {
+  max-height: 600px;
+}
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -42,6 +118,7 @@
       z-index: 1;
       margin-top: 1rem;
     }
+
 
     .section {
       padding: 3rem 2rem;
@@ -110,6 +187,24 @@
   </style>
 </head>
 <body>
+  <script>
+  const alienToggle = document.getElementById("alienToggle");
+  const alienMenu = document.getElementById("alienMenu");
+
+  alienToggle.addEventListener("click", () => {
+    alienMenu.classList.toggle("show");
+  });
+
+  alienMenu.querySelectorAll("li").forEach(item => {
+    item.addEventListener("click", () => {
+      const targetText = item.getAttribute("data-target");
+      const heading = Array.from(document.querySelectorAll(".section h2"))
+        .find(h => h.textContent.trim() === targetText);
+      if (heading) heading.scrollIntoView({ behavior: "smooth" });
+      alienMenu.classList.remove("show");
+    });
+  });
+</script>
   <header>
     <h1>ONSCREEN</h1>
     <p>Your gateway to free fonts, images, PDFs, and creative tools</p>
